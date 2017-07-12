@@ -1953,8 +1953,8 @@
             times.period = mean;
           }
         }
-        // If time permits, increase sample size to reduce the margin of error.
-        if (queue.length < 2 && !maxedOut) {
+        // continue till the requiered iterations are reached
+        if(sample.length < bench.options.maxSamples) {
           enqueue();
         }
         // Abort the `invoke` cycle when done.
@@ -2027,6 +2027,10 @@
         period = bench.times.period = times.period = clocked / count;
         // Compute the ops per second.
         bench.hz = clone.hz = 1 / period;
+
+        //average over clocked time 
+        bench.timeForBenchmarkExec = (bench.timeForBenchmarkExec>0) ? (bench.timeForBenchmarkExec+clocked)/2 : clocked;
+        
         // Avoid working our way up to this next time.
         bench.initCount = clone.initCount = count;
         // Do we need to do another cycle?
@@ -2262,7 +2266,15 @@
          * @memberOf Benchmark.options
          * @type Function
          */
-        'onStart': undefined
+        'onStart': undefined,
+
+        /**
+         * The maximum time a benchmark is allowed to run before finishing (secs).
+         * 
+         * @memberOf Benchmark.options
+         * @type number
+         */
+        'maxSamples': 5
       },
 
       /**
@@ -2378,6 +2390,14 @@
        * @type boolean
        */
       'running': false,
+
+      /**
+       * Time taken to execute 'count'# of operations
+       *
+       * @memberOf Benchmark
+       * @type number
+       */
+      'timeForBenchmarkExec' : 0,
 
       /**
        * Compiled into the test and executed immediately **before** the test loop.
