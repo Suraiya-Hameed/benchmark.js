@@ -1,0 +1,15 @@
+{
+  "name": "perftest_tedious",
+  "version": "1.0.0",
+  "description": "Performace test for tedious driver",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Suraiya Hameed <v-suhame@microsoft.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "tedious": "^2.6.4",
+    "benchmark": "git://github.com/Suraiya-Hameed/benchmark.js#measure_iterations"
+  }
+}
