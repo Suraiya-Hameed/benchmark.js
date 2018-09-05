@@ -9,7 +9,6 @@
   "author": "Suraiya Hameed <v-suhame@microsoft.com>",
   "license": "ISC",
   "devDependencies": {
-    "tedious": "^2.6.4",
-    "benchmark": "git://github.com/Suraiya-Hameed/benchmark.js#measure_iterations"
+    "tedious": "^2.6.4"
   }
 }

@@ -3,4 +3,4 @@
 *.log
 coverage
 node_modules
-sampleTest/tests/connectionConfig.js
+perfConfigSpec.json
